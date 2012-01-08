@@ -7,6 +7,9 @@ require("beautiful")
 -- Notification library
 require("naughty")
 
+-- Volume library
+require("volume")
+
 -- Load Debian menu entries
 require("debian.menu")
 
@@ -145,6 +148,7 @@ for s = 1, screen.count() do
             mylauncher,
             mytaglist[s],
             mypromptbox[s],
+	    volume_widget,
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
@@ -166,6 +170,25 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
+
+   -- Volume
+    -- Multimedia Keys
+   awful.key({ }, "XF86AudioRaiseVolume", function ()
+       awful.util.spawn("amixer set Master 9%+") end),
+   awful.key({ }, "XF86AudioLowerVolume", function ()
+       awful.util.spawn("amixer set Master 9%-") end),
+   awful.key({ }, "XF86AudioMute", function ()
+       awful.util.spawn("amixer sset Master toggle") end),
+
+    -- Shortcut Keys
+   awful.key({modkey, }, "0", function ()
+       awful.util.spawn("amixer set Master 9%+") end),
+   awful.key({modkey, }, "9", function ()
+       awful.util.spawn("amixer set Master 9%-") end),
+   awful.key({modkey, }, "8", function ()
+       awful.util.spawn("amixer sset Master toggle") end),
+
+
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
