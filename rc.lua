@@ -13,6 +13,9 @@ require("volume")
 -- Load Debian menu entries
 require("debian.menu")
 
+-- Load the 'run or raise' fuction
+require("aweror")
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
@@ -52,7 +55,7 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ "www", "dev", "rhy", 4, 5}, s, layouts[1])
+    tags[s] = awful.tag({ "www", "dev", "⚡", "pid", "tmp"}, s, layouts[1])
 end
 -- }}}
 
@@ -189,6 +192,21 @@ globalkeys = awful.util.table.join(
        awful.util.spawn("amixer sset Master toggle") end),
 
 
+  -- Key Binding that jumps to tag[4]/"pid" on "mod"+"p"
+   awful.key({ modkey }, "p", function ()
+       awful.tag.viewonly(tags[mouse.screen][4]) end),
+
+  -- Key Binding that restors all minimised windows
+   awful.key({ modkey, "Shift"   }, "n",
+        function()
+            local tag = awful.tag.selected()
+                for i=1, #tag:clients() do
+                    tag:clients()[i].minimized=false
+                    tag:clients()[i]:redraw()
+            end
+        end),
+
+
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
@@ -266,6 +284,9 @@ for s = 1, screen.count() do
    keynumber = math.min(9, math.max(#tags[s], keynumber));
 end
 
+	
+
+
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
@@ -299,12 +320,18 @@ for i = 1, keynumber do
                   end))
 end
 
+
+
 clientbuttons = awful.util.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
     awful.button({ modkey }, 1, awful.mouse.client.move),
     awful.button({ modkey }, 3, awful.mouse.client.resize))
 
 -- Set keys
+
+-- generate and add the 'run or raise' key bindings to the globalkeys table
+globalkeys = awful.util.table.join(globalkeys, aweror.genkeys(modkey))
+
 root.keys(globalkeys)
 -- }}}
 
