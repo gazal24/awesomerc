@@ -12,9 +12,9 @@
 -- ror.lua
 module("ror")
 table5={
-  ["a"]={"google-chrome --user-data-dir=/dev/shm/goo", "Chromium" },
+  ["a"]={"google-chrome", "google-chrome", "instance"},
   ["s"]={"xterm -class Screen -e screen -xRRS xterm  ", "Screen" },
   ["v"]={"gvim", "GVIM"},
   ["e"]={"emacs", "Emacs"},
-  ["l"]={"rxvt -bg black", "rxvt"}
+  [";"]={"gnome-terminal", "gnome-terminal", "instance"}
 }
