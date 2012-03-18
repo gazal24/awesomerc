@@ -16,5 +16,10 @@ table5={
   ["s"]={"xterm -class Screen -e screen -xRRS xterm  ", "Screen" },
   ["v"]={"gvim", "GVIM"},
   ["e"]={"emacs", "Emacs"},
+
+-- uncomment line below to run twiiter.com in app-mode with ror_key mod+q
+-- ["q"]={"google-chrome --app=http://twitter.com", "twitter.com", "instance"},
+
   [";"]={"gnome-terminal", "gnome-terminal", "instance"}
+
 }
