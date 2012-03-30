@@ -184,11 +184,11 @@ globalkeys = awful.util.table.join(
        awful.util.spawn("amixer sset Master toggle") end),
 
     -- Shortcut Keys
-   awful.key({modkey, }, "0", function ()
+   awful.key({modkey, }, ".", function ()
        awful.util.spawn("amixer set Master 9%+") end),
-   awful.key({modkey, }, "9", function ()
+   awful.key({modkey, }, ",", function ()
        awful.util.spawn("amixer set Master 9%-") end),
-   awful.key({modkey, }, "8", function ()
+   awful.key({modkey, }, "/", function ()
        awful.util.spawn("amixer sset Master toggle") end),
 
 
@@ -243,7 +243,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
+    -- awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
     awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
@@ -271,6 +271,8 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
     awful.key({ modkey,           }, "n",      function (c) c.minimized = not c.minimized    end),
+    -- hide the client
+    awful.key({ modkey,           }, "h",      function (c) c.hidden = true end),
     awful.key({ modkey,           }, "m",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
