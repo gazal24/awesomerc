@@ -15,7 +15,7 @@ table5={
   ["a"]={"google-chrome", "google-chrome", "instance"},
   ["s"]={"xterm -class Screen -e screen -xRRS xterm  ", "Screen" },
   ["v"]={"gvim", "GVIM"},
-  ["e"]={"emacs -bg gray20 -fg white", "Emacs"},
+  ["e"]={"emacs", "Emacs"},
 -- uncomment line below to run twiiter.com in app-mode with ror_key mod+q
 -- ["q"]={"google-chrome --app=http://twitter.com", "twitter.com", "instance"},
   ["b"]={"nautilus", "nautilus", "instance"},
