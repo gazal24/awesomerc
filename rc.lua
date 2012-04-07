@@ -193,8 +193,8 @@ globalkeys = awful.util.table.join(
 
 
   -- Key Binding that jumps to tag[4]/"pid" on "mod"+"p"
-   awful.key({ modkey }, "p", function ()
-       awful.tag.viewonly(tags[mouse.screen][4]) end),
+  --   awful.key({ modkey }, "p", function ()
+  --     awful.tag.viewonly(tags[mouse.screen][4]) end),
 
   -- Key Binding that restors all minimised windows
    awful.key({ modkey, "Shift"   }, "n",

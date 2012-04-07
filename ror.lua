@@ -19,5 +19,6 @@ table5={
 -- uncomment line below to run twiiter.com in app-mode with ror_key mod+q
 -- ["q"]={"google-chrome --app=http://twitter.com", "twitter.com", "instance"},
   ["b"]={"nautilus", "nautilus", "instance"},
+  ["p"]={"pidgin", "Pidgin", "instance"},
   [";"]={"gnome-terminal", "gnome-terminal", "instance"}
 }
