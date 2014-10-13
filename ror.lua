@@ -12,14 +12,14 @@
 -- ror.lua
 module("ror")
 table5={
-  ["a"]={"google-chrome", "google-chrome", "instance"},
-  ["s"]={"xterm -class Screen -e screen -xRRS xterm  ", "Screen" },
+  ["a"]={"chromium-browser", "Chromium-browser", "instance"},
+  -- ["a"]={"firefox", "Firefox", "class"},
+  -- ["s"]={"xterm -class Screen -e screen -xRRS xterm  ", "Screen" },
+  ["u"] = {"eclipse", "Eclipse", "instance"},
   ["v"]={"gvim", "GVIM"},
   ["e"]={"emacs", "Emacs"},
 
-  -- uncomment line below to run twiiter.com in app-mode with ror_key mod+q
   -- ["q"]={"google-chrome --app=http://twitter.com", "twitter.com", "instance"},
-  -- Line below runs tp.iitkgp.ernet.in/notice in app-mode with ror_key mod+t
   ["t"]={"google-chrome --app=http://tp.iitkgp.ernet.in/notice", "tp.iitkgp.ernet.in__notice", "instance"},
   
   ["b"]={"nautilus", "nautilus", "instance"},
