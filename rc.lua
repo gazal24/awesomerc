@@ -196,6 +196,9 @@ globalkeys = awful.util.table.join(
        awful.util.spawn("amixer sset Master toggle") end),
 
 
+  -- Screenshot
+  awful.key({ }, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/screenshots/ 2>/dev/null'") end),
+
   -- Key Binding that jumps to tag[4]/"pid" on "mod"+"p"
   --   awful.key({ modkey }, "p", function ()
   --     awful.tag.viewonly(tags[mouse.screen][4]) end),
