@@ -10,6 +10,9 @@ require("naughty")
 -- Volume library
 require("volume")
 
+-- Batter library
+require("battery")
+
 -- Load Debian menu entries
 require("debian.menu")
 
@@ -152,6 +155,7 @@ for s = 1, screen.count() do
             mytaglist[s],
             mypromptbox[s],
 	    volume_widget,
+	    batterywidget,
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
