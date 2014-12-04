@@ -5,44 +5,32 @@ batterywidget.text = ""
 batterywidgettimer = timer({ timeout = 5 })
 batterywidgettimer:add_signal("timeout",
   function()
-     adapter = "BAT0"
-     spacer = " "
-     local fcur = io.open("/sys/class/power_supply/"..adapter.."/charge_now")
-     local fcap = io.open("/sys/class/power_supply/"..adapter.."/charge_full")
-     local fsta = io.open("/sys/class/power_supply/"..adapter.."/status")
-     local cur = fcur:read()
-     local cap = fcap:read()
-     local sta = fsta:read()
-     local battery = math.floor(cur * 100 / cap)
-     if sta:match("Charging") then
-         dir = ""
-         battery = "A/C ["..battery.."]"
-     elseif sta:match("Discharging") then
-         dir = "|"
-         if tonumber(battery) > 25 and tonumber(battery) < 75 then
-             battery = battery
-         elseif tonumber(battery) < 25 then
-             if tonumber(battery) < 10 then
-                 naughty.notify({ title      = "BATTERY WARNING"
-                                , text       = "Battery low!"..spacer..battery.."%"..spacer.."left!"
-                                , timeout    = 5
-                                , position   = "top_right"
-                                , fg         = beautiful.fg_focus
-                                , bg         = beautiful.bg_focus
-                                })
-             end
-             battery = battery
-         else
-             battery = battery
-         end
-     else
-         dir = "|"
-         battery = "A/C"
-     end
-     batterywidget.text = spacer..dir..battery..dir..spacer
-     fcur:close()
-     fcap:close()
-     fsta:close()
+    spacer = " "
+    adapter = "BAT0"
+    local fstatus = io.open("/sys/class/power_supply/"..adapter.."/status")
+    local status = fstatus:read()
+
+    fh = assert(io.popen("acpi | cut -d, -f 2 | cut -d ' ' -f 2 | cut -d '%' -f 1", "r"))
+    local battery = fh:read("*l")
+
+    if status:match("Charging") then
+        batterytext = "<span color='green'>" .. battery .. "</span>"
+
+    else
+	batterytext = "<span color='red'>" .. battery .. "</span>"
+	if tonumber(battery) < 10 then
+                naughty.notify({ title      = "BATTERY WARNING"
+                               , text       = "Battery low!"..spacer..battery.."%"..spacer.."left!"
+                               , timeout    = awe
+                               , position   = "top_right"
+                               , fg         = beautiful.fg_focus
+                               , bg         = beautiful.bg_focus
+                               })
+	end
+    end
+
+    batterywidget.text = " [" .. batterytext .. "] "
+    fh:close()
   end
 )
 
