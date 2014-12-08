@@ -14,10 +14,10 @@ batterywidgettimer:add_signal("timeout",
     local battery = fh:read("*l")
 
     if status:match("Charging") then
-        batterytext = "<span color='green'>" .. battery .. "</span>"
-
+	-- SET FORMATTING
+	batterytext = "<span color='green'>" .. battery .. "</span>"
     else
-	batterytext = "<span color='red'>" .. battery .. "</span>"
+	-- IF STATUS IS OTHER THAN CHARGING THEN CHECK FOR LOW BATTER AND NOTIFY.
 	if tonumber(battery) < 10 then
                 naughty.notify({ title      = "BATTERY WARNING"
                                , text       = "Battery low!"..spacer..battery.."%"..spacer.."left!"
@@ -26,6 +26,13 @@ batterywidgettimer:add_signal("timeout",
                                , fg         = beautiful.fg_focus
                                , bg         = beautiful.bg_focus
                                })
+	end
+
+	-- NOW FORMAT ACCORDING TO STATUS
+	if status:match("Discharging") then
+		batterytext = "<span color='red'>" .. battery .. "</span>"
+	else
+		batterytext = "<span color='yellow'>" .. battery .. "</span>"
 	end
     end
 
